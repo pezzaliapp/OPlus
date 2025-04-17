@@ -1,41 +1,75 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-  <title>ScanX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheda Ordine - PWA Offline</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        .install-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <h1>ScanX</h1>
-  <p>Carica CSV prodotti:</p>
-  <input type="file" id="csvFile" accept=".csv" />
-  <p>Scatta foto codice:</p>
-  <input type="file" id="cameraInput" accept="image/*" capture="environment" />
-  <canvas id="canvas" style="display:none;"></canvas>
-  <div id="ocrResults"></div>
+    <div class="container">
+        <h1>Scheda Ordine - PWA Offline</h1>
+        <p>Benvenuto! Questa applicazione ti permette di creare, gestire e salvare schede ordine anche offline.</p>
+        <p>Per installare l'app sul tuo dispositivo, utilizza le seguenti istruzioni:</p>
+        <ul>
+            <li><b>Su mobile:</b> Apri il menu del browser e seleziona <em>Aggiungi alla schermata home</em>.</li>
+            <li><b>Su desktop:</b> Nel browser, clicca sull'icona di installazione nella barra degli indirizzi.</li>
+        </ul>
+        <p>Dopo l'installazione, potrai usare l'app offline.</p>
+        <button class="install-button" onclick="openApp()">Aprila APP</button>
+    </div>
 
-  <h2>Prodotti selezionati</h2>
-  <table id="itemsTable">
-    <thead>
-      <tr>
-        <th>Codice</th>
-        <th>Descrizione</th>
-        <th>Q.tà</th>
-        <th>Prezzo Lordo</th>
-        <th>Sconto %</th>
-        <th>Prezzo Netto</th>
-        <th>Trasporto</th>
-        <th>Installazione</th>
-        <th>Totale</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registrato con successo:', registration.scope);
+            })
+            .catch(error => {
+                console.error('Registrazione Service Worker fallita:', error);
+            });
+        }
 
-  <script src="https://unpkg.com/jsqr/dist/jsQR.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2/dist/tesseract.min.js"></script>
-  <script src="app.js"></script>
+        function openApp() {
+            window.location.href = "schedaordine.html";  // Sostituisci "app.html" con il nome del file principale della tua PWA
+        }
+    </script>
 </body>
 </html>
