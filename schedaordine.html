@@ -967,12 +967,15 @@
                     const costoGiornaliero=document.getElementById("costoGiornaliero").textContent;
                     const costoOrario=document.getElementById("costoOrario").textContent;
 
-                    const noleggioInfo=[
-                        ["Rata Mensile",rataMensile],
-                        ["Spese di Contratto",speseContratto],
-                        ["Costo Giornaliero",costoGiornaliero],
-                        ["Costo Orario",costoOrario]
-                    ];
+                    const durataNoleggio = document.getElementById("durata").selectedOptions[0].text;
+
+                const noleggioInfo = [
+                  ["Durata", durataNoleggio],
+                  ["Rata Mensile", rataMensile],
+                  ["Spese di Contratto", speseContratto],
+                  ["Costo Giornaliero", costoGiornaliero],
+                  ["Costo Orario", costoOrario]
+                ];
 
                     doc.autoTable({
                         startY:noleggioStartY,
